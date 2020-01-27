@@ -3,7 +3,8 @@ class TodoService {
         return[
             {"name":"stativ"},
             {"name":"erdbeeren"},
-            {"name":"brot"}
+            {"name":"brot"},
+            {"name":"joghurt"}
         ]
     }
 }

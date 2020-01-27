@@ -2,9 +2,7 @@
   <div id="app">
     hello world
     <div id="container">
-      <div>Stativ</div>
-      <div>Erdbeeren</div>
-      <div>Brot</div>
+      <div v-for="todo in todos" :key="todo.name">{{todo.name}}</div>
       <div>
         <img src="Mojave Night.jpg" />
       </div>
@@ -16,6 +14,12 @@
 <script>
 export default {
   name: "app",
+  data() {
+    return { todos: [] };
+  },
+  mounted(){
+    this.getData();
+  },
   methods: {
     async getData() {
       try {
@@ -25,14 +29,9 @@ export default {
         }
         const data = await response.json();
 
-        data.forEach(element => {
-          const newDiv = document.createElement("div");
-          const newContent = document.createTextNode(element.name);
-          newDiv.appendChild(newContent);
-          document.getElementById("container").appendChild(newDiv);
-        });
+      this.todos=data;
+
       } catch (error) {
-        
         alert("Error: " + error);
       }
     }
@@ -41,5 +40,18 @@ export default {
 </script>
 
 <style>
+#container {
+  display: flex;
+  flex-direction: column;
+}
 
+#container div {
+  background-color: aqua;
+}
+
+#container img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
 </style>
