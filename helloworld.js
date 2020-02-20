@@ -8,8 +8,9 @@ const todoService = new TodoService();
 
 app.use(express.static('public'))
 app.get('/', (req, res) => res.sendFile('index.html'))
-app.get('/api/todos', (req, res) => {
-    res.json(todoService.getTodos())
+app.get('/api/todos', async (req, res) => {
+    const todos = await todoService.getTodos();
+    res.json(todos);
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
